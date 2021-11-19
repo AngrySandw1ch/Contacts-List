@@ -31,12 +31,11 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/menu"
         android:layout_width="@dimen/menu_button_size"
+        style="?attr/materialButtonOutlinedStyle"
         android:layout_height="wrap_content"
         app:icon="@drawable/ic_baseline_more_vert_24"
         app:iconPadding="@dimen/icon_padding"
         app:iconGravity="start"
-        android:clickable="true"
-        android:focusable="true"
         app:srcCompat="@drawable/ic_baseline_more_vert_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/contact_name"

@@ -40,6 +40,7 @@ class ContactViewHolder(
 
             menu.setOnClickListener {
                 PopupMenu(it.context, it).apply {
+                    this.inflate(R.menu.options_contact)
                     setOnMenuItemClickListener { item ->
                         when(item.itemId) {
                             R.id.edit -> {

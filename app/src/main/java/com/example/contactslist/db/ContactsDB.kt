@@ -9,7 +9,6 @@ import com.example.contactslist.AppActivity
 import com.example.contactslist.dto.Contact
 
 class ContactsDB {
-    //private val mAppActivity = AppActivity()
     private var contactsList = listOf(
         Contact(
             id = 1,
@@ -40,17 +39,19 @@ class ContactsDB {
             id = 6,
             name = "Ilya lisanin",
             phoneNumber = "89275540798"
+        ),
+        Contact(
+            id = 7,
+            name = "Egor Letov",
+            phoneNumber = "89173456789"
+        ),
+        Contact(
+            id = 8,
+            name = "Aleksandr Bashlachev",
+            phoneNumber = "89993289789"
         )
     )
     private val data = MutableLiveData(contactsList)
-   /* private val cursor = mAppActivity.contentResolver.query(
-        ContactsContract.Contacts.CONTENT_URI,
-        null,
-        null,
-        null,
-        null
-    )*/
-
 
 
     fun getById(id: Long) : Contact {

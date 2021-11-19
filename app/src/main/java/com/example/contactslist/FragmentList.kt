@@ -1,13 +1,13 @@
 package com.example.contactslist
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.RecyclerView
 import com.example.contactslist.adapter.ContactAdapter
 import com.example.contactslist.adapter.OnActionListener
 import com.example.contactslist.databinding.FragmentListBinding
@@ -16,10 +16,10 @@ import com.example.contactslist.viewmodel.ContactViewModel
 
 
 class FragmentList : Fragment() {
+    private lateinit var activity: AppActivity
     private lateinit var binding: FragmentListBinding
-    val viewModel: ContactViewModel by viewModels(
-        ownerProducer = ::requireParentFragment
-    )
+    val viewModel: ContactViewModel = ContactViewModel()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -29,11 +29,32 @@ class FragmentList : Fragment() {
 
         val adapter = ContactAdapter(object : OnActionListener {
             override fun edit(contact: Contact) {
+                val fragmentContainer: View? = activity.findViewById(R.id.fragment_container)
                 viewModel.edit(contact)
-                Bundle().apply {
-                    putString("name_text", contact.name)
-                    putString("phoneNumber_text", contact.phoneNumber)
-                    findNavController().navigate(R.id.action_listFragment_to_detailsFragment, this)
+                if (fragmentContainer != null) {
+                    val fragmentDetails = DetailsFragment()
+                    fragmentDetails.arguments = Bundle().apply {
+                        putString("name_text", contact.name)
+                        putString("phoneNumber_text", contact.phoneNumber)
+                    }
+
+                    activity.supportFragmentManager.beginTransaction().replace(
+                        R.id.fragment_container,
+                        fragmentDetails
+                    )
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                        .addToBackStack(null)
+                        .commit()
+
+                } else {
+                    Bundle().apply {
+                        putString("name_text", contact.name)
+                        putString("phoneNumber_text", contact.phoneNumber)
+                        findNavController().navigate(
+                            R.id.action_listFragment_to_detailsFragment,
+                            this
+                        )
+                    }
                 }
             }
 
@@ -53,6 +74,12 @@ class FragmentList : Fragment() {
         }
 
         return binding.root
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        activity = context as AppActivity
+
     }
 
 }

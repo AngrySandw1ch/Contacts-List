@@ -7,13 +7,56 @@
     android:layout_height="match_parent"
     tools:context=".DetailsFragment">
 
-    <TextView
+
+    <EditText
+        android:id="@+id/edited_contact_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/edited_contact_name_hint"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/edited_contact_phoneNumber"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/edited_contact_phoneNumber_hint"
+        android:inputType="phone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edited_contact_name" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/apply_changes_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="@dimen/margin_top"
+        android:text="@string/apply_changes_button_text"
+        android:textStyle="bold"
+        app:icon="@drawable/ic_apply_24"
+        app:iconGravity="textStart"
+        app:iconTint="@color/black"
+        app:layout_constraintEnd_toStartOf="@id/deny_changes_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edited_contact_phoneNumber" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/deny_changes_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_top"
+        android:text="@string/deny_changes_button_text"
+        android:textStyle="bold"
+        app:icon="@drawable/ic_deny_24"
+        app:iconGravity="textStart"
+        app:iconTint="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/apply_changes_button"
+        app:layout_constraintTop_toBottomOf="@+id/edited_contact_phoneNumber" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
