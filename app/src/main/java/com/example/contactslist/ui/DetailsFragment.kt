@@ -10,6 +10,8 @@ import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.example.contactslist.databinding.FragmentDetailsBinding
 import com.example.contactslist.utils.KeyboardUtils
@@ -17,7 +19,7 @@ import com.example.contactslist.viewmodel.ContactViewModel
 
 class DetailsFragment : Fragment() {
     lateinit var binding: FragmentDetailsBinding
-    private val viewModel:ContactViewModel = ContactViewModel()
+    lateinit var viewModel: ContactViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,6 +27,7 @@ class DetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentDetailsBinding.inflate(inflater, container, false)
+        viewModel = ViewModelProvider(requireActivity()).get(ContactViewModel::class.java)
 
         binding.editedContactName.setText(arguments?.getString("name_text"))
         binding.editedContactPhoneNumber.setText(arguments?.getString("phoneNumber_text"))

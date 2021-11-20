@@ -7,6 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentTransaction
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
@@ -22,7 +25,7 @@ import com.example.contactslist.viewmodel.ContactViewModel
 class FragmentList : Fragment() {
     private lateinit var activity: AppActivity
     private lateinit var binding: FragmentListBinding
-    val viewModel: ContactViewModel = ContactViewModel()
+    lateinit var viewModel: ContactViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,7 +33,7 @@ class FragmentList : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentListBinding.inflate(inflater, container, false)
-
+        viewModel = ViewModelProvider(requireActivity()).get(ContactViewModel::class.java)
         val adapter = ContactAdapter(object : OnActionListener {
             override fun edit(contact: Contact) {
                 val fragmentContainer: View? = activity.findViewById(R.id.fragment_container)

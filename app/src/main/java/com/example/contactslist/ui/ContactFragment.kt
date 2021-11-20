@@ -33,7 +33,6 @@ class ContactFragment : Fragment() {
             .timeout(30_000)
             .into(binding.contact.avatar)
 
-        // Inflate the layout for this fragment
         return binding.root
     }
 
