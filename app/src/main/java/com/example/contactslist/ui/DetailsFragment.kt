@@ -1,4 +1,4 @@
-package com.example.contactslist
+package com.example.contactslist.ui
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity

@@ -7,18 +7,27 @@
 
     <fragment
         android:id="@+id/listFragment"
-        android:name="com.example.contactslist.FragmentList"
+        android:name="com.example.contactslist.ui.FragmentList"
         android:label="fragment_list"
         tools:layout="@layout/fragment_list">
         <action
             android:id="@+id/action_listFragment_to_detailsFragment"
             app:destination="@id/detailsFragment"/>
+        <action
+            android:id="@+id/action_listFragment_to_contactFragment"
+            app:destination="@id/contactFragment"/>
     </fragment>
+
+    <fragment
+        android:id="@+id/contactFragment"
+        android:name="com.example.contactslist.ui.ContactFragment"
+        android:label="fragment_contact"
+        tools:layout="@layout/fragment_contact"/>
 
 
     <fragment
         android:id="@+id/detailsFragment"
-        android:name="com.example.contactslist.DetailsFragment"
+        android:name="com.example.contactslist.ui.DetailsFragment"
         android:label="fragment_details"
         tools:layout="@layout/fragment_details"/>
 

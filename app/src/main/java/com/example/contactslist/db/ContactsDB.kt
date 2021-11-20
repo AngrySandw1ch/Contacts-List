@@ -13,17 +13,19 @@ class ContactsDB {
         Contact(
             id = 1,
             name ="Vasya Pupkin",
-            phoneNumber = "89991690573"
+            phoneNumber = "89991690573",
+            imageUrl = "https://loremflickr.com/48/48"
         ),
         Contact(
             id = 2,
             name ="Petya Petrov",
-            phoneNumber = "89991234567"
+            phoneNumber = "89991234567",
         ),
         Contact(
             id = 3,
             name = "Ivan Ivanov",
-            phoneNumber = "8172909376"
+            phoneNumber = "8172909376",
+            imageUrl = "https://loremflickr.com/48/48"
         ),
         Contact(
             id = 4,
@@ -33,12 +35,14 @@ class ContactsDB {
         Contact(
             id = 5,
             name = "Ivan Vasilevich",
-            phoneNumber = "89293560928"
+            phoneNumber = "89293560928",
+            imageUrl = "https://loremflickr.com/48/48"
         ),
         Contact(
             id = 6,
             name = "Ilya lisanin",
-            phoneNumber = "89275540798"
+            phoneNumber = "89275540798",
+            imageUrl = "https://loremflickr.com/48/48"
         ),
         Contact(
             id = 7,
@@ -48,7 +52,8 @@ class ContactsDB {
         Contact(
             id = 8,
             name = "Aleksandr Bashlachev",
-            phoneNumber = "89993289789"
+            phoneNumber = "89993289789",
+            imageUrl = "https://loremflickr.com/48/48"
         )
     )
     private val data = MutableLiveData(contactsList)

@@ -46,4 +46,10 @@ class ContactViewModel: ViewModel() {
         edited.value = emptyContact
     }
 
+    fun findContactByName(name: String): Contact? {
+        return data.value?.first {
+            it.name == name
+        }
+    }
+
 }

@@ -6,6 +6,8 @@ import android.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.contactslist.R
 import com.example.contactslist.databinding.CardContactBinding
 import com.example.contactslist.dto.Contact
@@ -37,6 +39,16 @@ class ContactViewHolder(
         with(binding) {
             contactName.text = contact.name
             contactPhoneNumber.text = contact.phoneNumber
+
+            Glide.with(avatar)
+                .load(contact.imageUrl)
+                .placeholder(R.drawable.ic_face_24)
+                .error(R.drawable.ic_baseline_error_24)
+                .circleCrop()
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true)
+                .timeout(30_000)
+                .into(avatar)
 
             menu.setOnClickListener {
                 PopupMenu(it.context, it).apply {

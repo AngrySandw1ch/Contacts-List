@@ -1,4 +1,4 @@
-package com.example.contactslist
+package com.example.contactslist.ui
 
 import android.content.Context
 import android.os.Bundle
@@ -8,6 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.RecyclerView
+import com.example.contactslist.AppActivity
+import com.example.contactslist.R
 import com.example.contactslist.adapter.ContactAdapter
 import com.example.contactslist.adapter.OnActionListener
 import com.example.contactslist.databinding.FragmentListBinding
@@ -62,7 +66,12 @@ class FragmentList : Fragment() {
                 viewModel.removeById(contact.id)
             }
         })
+
+        val itemDecoration = DividerItemDecoration(activity, RecyclerView.VERTICAL).apply {
+            setDrawable(resources.getDrawable(R.drawable.divider_drawable))
+        }
         binding.container.adapter = adapter
+        binding.container.addItemDecoration(itemDecoration)
 
         viewModel.data.observe(viewLifecycleOwner) {
             adapter.submitList(it)
@@ -73,6 +82,17 @@ class FragmentList : Fragment() {
             }
         }
 
+        binding.buttonFind.setOnClickListener {
+            val contactName = binding.contactName.text.toString()
+            val contact = viewModel.findContactByName(contactName)
+            Bundle().apply {
+                contact?.id?.let { id ->
+                    putLong("contact_id", id)
+                }
+                findNavController().navigate(R.id.action_listFragment_to_contactFragment, this)
+            }
+            binding.contactName.text.clear()
+        }
         return binding.root
     }
 
